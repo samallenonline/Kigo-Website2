@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Kigo-Website2/static/css/main.d5ab5cf2.css",
+    "main.js": "/Kigo-Website2/static/js/main.77f93509.js",
+    "static/js/453.a7c3230f.chunk.js": "/Kigo-Website2/static/js/453.a7c3230f.chunk.js",
+    "static/media/lucida-bsod.ttf": "/Kigo-Website2/static/media/lucida-bsod.74415c2c3c59c9262091.ttf",
+    "static/media/cursor.cur": "/Kigo-Website2/static/media/cursor.90444ce594ede625e9db.cur",
+    "index.html": "/Kigo-Website2/index.html",
+    "main.d5ab5cf2.css.map": "/Kigo-Website2/static/css/main.d5ab5cf2.css.map",
+    "main.77f93509.js.map": "/Kigo-Website2/static/js/main.77f93509.js.map",
+    "453.a7c3230f.chunk.js.map": "/Kigo-Website2/static/js/453.a7c3230f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d5ab5cf2.css",
+    "static/js/main.77f93509.js"
+  ]
+}
