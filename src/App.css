@@ -10,7 +10,7 @@ body {
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; */
-  cursor: url('.//visuals/cursor.cur'), auto; 
+  cursor: url('.//visual/cursor.cur'), auto; 
 }
 
 .App-header {

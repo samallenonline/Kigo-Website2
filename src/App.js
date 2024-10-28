@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import spotifyLogo from './/visuals/spotify_kigo.png'
+import spotifyLogo from './/visual/spotify_kigo.png'
+import clickNoise from './audio/click-noise.wav';
 
 function App() {
   const [step, setStep] = useState(0); // Track the current step
@@ -9,7 +10,8 @@ function App() {
   const [showWelcomeText, setShowWelcomeText] = useState(true); // Control visibility of welcome text
 
   const handleOkClick = () => {
-    if (step === 0) {
+	playClickSound()
+	if (step === 0) {
       setStep(1); // Show age input
       setShowAgeInput(true);
       setShowWelcomeText(false); // Clear the welcome text
@@ -27,9 +29,19 @@ function App() {
   };
 
   const handleAboutClick = () => {
+	playClickSound();
     setShowWelcomeText(true); // Show the welcome text again
     setShowAgeInput(false); // Hide the age input
     setStep(0); // Reset the step to show the welcome text
+  };
+  
+  const clickSound = new Audio(clickNoise);
+
+  const playClickSound = () => {
+    clickSound.currentTime = 0;
+    clickSound.play().catch((error) => {
+      console.error("Audio playback failed:", error);
+    });
   };
 
   return (
@@ -49,7 +61,7 @@ function App() {
                 </div>
                 {showWelcomeText && (
                   <div className="text-block1">
-                    <p>Kigo is a haiku generator that creates haikus from your most-listened songs. All you have to do is sign in with your Spotify account!</p>
+                    <p>Kigo is a haiku generator that creates haikus from the lyrics of your most-listened songs. All you have to do is sign in with your Spotify account!</p>
                   </div>
                 )}
                 {showWelcomeText && (
@@ -70,7 +82,12 @@ function App() {
 				)}
 				{showWelcomeText && (
 				  <div className="text-block5">
-				  	<p>If you have suggestions for improvement, you are welcome to create an issue within our current GitHub repository. For the link to our repository as well other methods to contact us, please click the <b>"Contact Us"</b> button down below!</p>
+				  	<p>Kigo is open-source software licensed under the GNU General Public License (GPL). This means you are free to view, modify, and distribute the source code, provided that any modifications or redistributed versions also remain under the GPL. If you wish to explore the code, contribute, or use Kigo in your projects, please visit our GitHub repository to view our contribution guidelines.</p>
+				  </div>
+				)}
+				{showWelcomeText && (
+				  <div className="text-block6">
+				  	<p>Lastly, if you have suggestions for improvement, you are welcome to create an issue within our GitHub repository. For the link to our repository as well other methods to contact us, please click the <b>"Contact Us"</b> button down below!</p>
 				  </div>
 				)}
                 {showAgeInput && (
@@ -104,13 +121,13 @@ function App() {
             </div>
             <div className="smallbox">
               <button className="small-button1" onClick={handleAboutClick}>About</button>
-              <button className="small-button2">Contact Us</button>
+              <button className="small-button2" onClick={playClickSound}>Contact Us</button>
             </div>
           </div>
           <div className="box box2">
-            <button className="big-button1">Preferences ⭑.ᐟ</button>
-            <button className="big-button2">Account ⭑.ᐟ</button>
-            <button className="big-button3">Other ⭑.ᐟ</button>
+            <button className="big-button1" onClick={playClickSound}>Preferences ⭑.ᐟ</button>
+            <button className="big-button2" onClick={playClickSound}>Account ⭑.ᐟ</button>
+            <button className="big-button3" onClick={playClickSound}>Other ⭑.ᐟ</button>
           </div>
         </div>
       </main>
