@@ -10,7 +10,7 @@ body {
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; */
-  cursor: url('/visuals/cursor.cur'), auto; 
+  cursor: url('.//visuals/cursor.cur'), auto; 
 }
 
 .App-header {
@@ -63,11 +63,18 @@ body {
   box-sizing: border-box;
 }
 
+.spotify-image {
+	width: 150px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 8px;
+}
+
 .title {
 	text-align: center;
 }
 
-.text-block1 {
+.text-block1, .text-block2, .textblock3, .textblock4, .textblock5 {
 	text-align: center;
 }
 

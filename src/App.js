@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import spotifyLogo from './/visuals/spotify_kigo.png'
 
 function App() {
   const [step, setStep] = useState(0); // Track the current step
@@ -61,10 +62,21 @@ function App() {
                     <p>After you sign into your Spotify account, Kigo will use the Spotify API to gather information from your listening history and identify your most-listened songs. The Genius API is then used to gather lyrical content from these songs. From there, Kigo uses several algorithms to parse these lyrics and generate a fun and personalized haiku!</p>
                   </div>
                 )}
+				{showWelcomeText && (
+			 	  <div className="text-block4">
+				  	<p>★・・・・・・・・・・・・・・・・・・・・・・・・・・★</p>
+				  	<p>At the moment, Kigo is only compatible with Spotify. Our team may consider integrating functionality with other music streaming services such as SoundCloud and Apple Music sometime in the future.</p>
+				  </div>
+				)}
+				{showWelcomeText && (
+				  <div className="text-block5">
+				  	<p>If you have suggestions for improvement, you are welcome to create an issue within our current GitHub repository. For the link to our repository as well other methods to contact us, please click the <b>"Contact Us"</b> button down below!</p>
+				  </div>
+				)}
                 {showAgeInput && (
                   <div className="age-input">
                     <p><b>Please enter your age:</b></p>
-					<p>Kigo requires that you enter you age so that we can manage explicit content. If you are under 18, lyrics that contains explicit content will not be used in haiku generation. Otherwise, you will be allowed to toggle the "Allow explicit content" setting in the <b>Preferences</b> menu.</p>
+					<p>Kigo requires that you enter you age so that we can manage explicit content. If you are under 18, lyrics that contains explicit content will not be used in haiku generation. Otherwise, you will be allowed to toggle the "Allow explicit content" setting in the <b>"Preferences"</b> menu.</p>
                     <input
                       type="number"
                       value={age}
@@ -77,6 +89,7 @@ function App() {
                 {step === 2 && (
                   <div className="confirmation-message">
                     <p>Thank you for entering your age!</p>
+					<img src={spotifyLogo} alt="Connect Spotify" className="spotify-image" />
                   </div>
                 )}
                 {step === 0 && showWelcomeText && (
