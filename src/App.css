@@ -74,7 +74,7 @@ body {
 	text-align: center;
 }
 
-.text-block1, .text-block2, .textblock3, .textblock4, .textblock5 {
+.text-block1 {
 	text-align: center;
 }
 
@@ -98,7 +98,7 @@ body {
 .smallbox { /* holds small buttons */
   font-size: 16px;
   position: relative; 
-  width: 300px; 
+  width: 900px; 
   height: 30px;
   margin-top: 3px;
   /*background-color: white;
@@ -111,9 +111,22 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
 }
 
+.age-input-box {
+  width: 50px;  /* Adjust width to your preference */
+  height: 30px; /* Adjust height to your preference */
+  padding: 5px; /* Optional: Add some padding */
+  font-size: 16px; /* Adjust font size if needed */
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 4px; /* Rounded corners */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+.small-button0,
 .small-button1,
 .small-button2 {
     height: 30px; /* Set the desired height */
@@ -144,6 +157,16 @@ button {
 .ok-button {
 	align-items: center;	
 	width: 200px;
+}
+
+
+.toggle-explicit {
+  display: flex; /* Use flexbox for better alignment */
+  align-items: center; /* Center the checkbox and text vertically */
+}
+
+.toggle-explicit input {
+  margin-right: 20px; /* Adjust the value to your preference */
 }
 
 
