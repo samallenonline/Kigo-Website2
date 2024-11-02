@@ -34,6 +34,7 @@ function App() {
 	setShowAccount(false);
 	setShowWelcomeText(true);
 	setShowAbout(false);
+	setStep(0);
   }
   
   const handleAccountClick = () => {
@@ -43,6 +44,7 @@ function App() {
 	setShowContactInfo(false);
 	setShowAccount(true);
 	setShowHome(false);
+	setStep(0);
   };
   
   const handleOkClick = () => {
