@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Kigo-Website2/static/css/main.07deb486.css",
-    "main.js": "/Kigo-Website2/static/js/main.f9587661.js",
+    "main.js": "/Kigo-Website2/static/js/main.bca0671c.js",
     "static/js/453.a7c3230f.chunk.js": "/Kigo-Website2/static/js/453.a7c3230f.chunk.js",
     "static/media/spotify_kigo.png": "/Kigo-Website2/static/media/spotify_kigo.feb25ab22531082d6d68.png",
     "static/media/lucida-bsod.ttf": "/Kigo-Website2/static/media/lucida-bsod.74415c2c3c59c9262091.ttf",
@@ -9,11 +9,11 @@
     "static/media/cursor.cur": "/Kigo-Website2/static/media/cursor.90444ce594ede625e9db.cur",
     "index.html": "/Kigo-Website2/index.html",
     "main.07deb486.css.map": "/Kigo-Website2/static/css/main.07deb486.css.map",
-    "main.f9587661.js.map": "/Kigo-Website2/static/js/main.f9587661.js.map",
+    "main.bca0671c.js.map": "/Kigo-Website2/static/js/main.bca0671c.js.map",
     "453.a7c3230f.chunk.js.map": "/Kigo-Website2/static/js/453.a7c3230f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.07deb486.css",
-    "static/js/main.f9587661.js"
+    "static/js/main.bca0671c.js"
   ]
 }
