@@ -115,12 +115,12 @@ body {
 }
 
 .age-input-box {
-  width: 50px;  /* Adjust width to your preference */
-  height: 30px; /* Adjust height to your preference */
-  padding: 5px; /* Optional: Add some padding */
-  font-size: 16px; /* Adjust font size if needed */
-  border: 1px solid #ccc; /* Border style */
-  border-radius: 4px; /* Rounded corners */
+  width: 50px;
+  height: 30px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -129,15 +129,15 @@ body {
 .small-button0,
 .small-button1,
 .small-button2 {
-    height: 30px; /* Set the desired height */
+    height: 30px;
     width: 150px;
     background-color: white;
-    margin-right: 3px; /* Space between buttons */
-    flex-shrink: 0; /* Prevent shrinking */
-    flex-grow: 0; /* Prevent growing */
-    display: flex; /* Use flexbox to align content inside */
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
+    margin-right: 3px;
+    flex-shrink: 0; 
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
 }
 
 button {
@@ -161,12 +161,12 @@ button {
 
 
 .toggle-explicit {
-  display: flex; /* Use flexbox for better alignment */
-  align-items: center; /* Center the checkbox and text vertically */
+  display: flex; 
+  align-items: center; 
 }
 
 .toggle-explicit input {
-  margin-right: 20px; /* Adjust the value to your preference */
+  margin-right: 20px; 
 }
 
 

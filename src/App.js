@@ -5,16 +5,18 @@ import clickNoise from './audio/click-noise.wav';
 import Account from './Account';
 
 function App() {
-  const [step, setStep] = useState(0); // Track the current step
-  const [age, setAge] = useState(''); // Store the user's age
-  const [showAgeInput, setShowAgeInput] = useState(false); // Control age input visibility
-  const [showWelcomeText, setShowWelcomeText] = useState(true); // Control visibility of welcome text
-  const [showContactInfo, setShowContactInfo] = useState(false); // Control visibility of contact info 
-  const [showAccount, setShowAccount] = useState(false);
-  const [allowExplicitContent, setAllowExplicitContent] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
-  const [showHome, setShowHome] = useState(true);
+  // declare functions and variables 
+  const [step, setStep] = useState(0); // current step in the user flow
+  const [age, setAge] = useState('');  // user's age as a string
+  const [showAgeInput, setShowAgeInput] = useState(false); // controls age input page visibility
+  const [showWelcomeText, setShowWelcomeText] = useState(true); // controls welcome page visibility
+  const [showContactInfo, setShowContactInfo] = useState(false); // controls contact info page visibility
+  const [showAccount, setShowAccount] = useState(false); // controls account info page visibility
+  const [allowExplicitContent, setAllowExplicitContent] = useState(false); // user preference for explicit content
+  const [showAbout, setShowAbout] = useState(false); // controls about page visibility
+  const [showHome, setShowHome] = useState(true); // controls homepage visibility 
   
+  // get stored data from user 
   useEffect(() => {
 	const storedAge = localStorage.getItem('userAge');
 	if (storedAge) {
@@ -26,56 +28,63 @@ function App() {
 	}
   }, []);
   
+  // function for when user clicks on the "home" button
   const handleHomeClick = () => {
 	playClickSound();
+	// show welcome page, hide others 
+	setShowWelcomeText(true);
 	setShowWelcomeText(false);
 	setShowAgeInput(false);
 	setShowContactInfo(false);
 	setShowAccount(false);
-	setShowWelcomeText(true);
 	setShowAbout(false);
 	setStep(0);
   }
   
+  // function for when user clicks on the "account" button
   const handleAccountClick = () => {
 	playClickSound();
+	// show account page, hide others
+	setShowAccount(true);
 	setShowWelcomeText(false);
 	setShowAgeInput(false);
 	setShowContactInfo(false);
-	setShowAccount(true);
 	setShowHome(false);
 	setStep(0);
   };
   
+  // function for when user clicks on the "ok" button
   const handleOkClick = () => {
       playClickSound();
       if (step === 0) {
-          setStep(1); // Show age input
+          setStep(1); // show age input
           setShowAgeInput(true);
-          setShowWelcomeText(false); // Clear the welcome text
+		  // clear other pages 
+          setShowWelcomeText(false); 
           setShowContactInfo(false);
 		  setShowHome(false);
       } else if (step === 1) {
-          // Validate age input before proceeding
+          // validate user age 
           const parsedAge = parseInt(age, 10);
           if (isNaN(parsedAge) || parsedAge < 1 || parsedAge > 120) {
               alert("Please enter a valid age between 1 and 120.");
-              return; // Prevent proceeding if the age is invalid
+              return; // do not proceed if age is invalid 
           }
-          setStep(2); // Show confirmation message
+          setStep(2); // display confirmation message 
           setShowAgeInput(false);
-          localStorage.setItem('userAge', age);
+          localStorage.setItem('userAge', age); // store user age in local storage
       } else {
-          alert("Now you can connect your Spotify account!");
+          alert("Now you can connect your Spotify account!"); // prompt user to connect spotify account
       }
   };
 
-  
+  // function for when the user logs out of their account 
   const handleLogout = () => {
+	// reset all variables and display welcome text 
 	localStorage.removeItem('userAge');
 	setAge('');
-	setShowAgeInput(false);
 	setShowWelcomeText(true);
+	setShowAgeInput(false);
 	setShowContactInfo(false);
   };
   
@@ -83,33 +92,37 @@ function App() {
     setAge(e.target.value);
   };
 
+  // function for when the user clicks on the "about" button
   const handleAboutClick = () => {
 	playClickSound();
+	setStep(0); 
+	// show about page, hide others 
+	setShowAbout(true);
     setShowWelcomeText(false);
     setShowAgeInput(false);
 	setShowAccount(false);
-	setShowAbout(true);
-    setStep(0); 
 	setShowContactInfo(false);
   };
   
+  // function for when the user clicks on the "contact" button
   const handleContactClick = () => {
 	playClickSound();
+	setStep(0);
+	// show contact page, hide others 
+	setShowContactInfo(true);
 	setShowWelcomeText(false);
 	setShowAgeInput(false);
-	setShowContactInfo(true);
 	setShowAccount(false);
-	setShowAbout(false);
-	setStep(0);
-	
+	setShowAbout(false);	
   };
   
   const clickSound = new Audio(clickNoise);
 
+  // function that plays sound whenever the user clicks on a certain component 
   const playClickSound = () => {
-    clickSound.currentTime = 0;
+    clickSound.currentTime = 0; // reset  to beginning of audio file 
     clickSound.play().catch((error) => {
-      console.error("Audio playback failed:", error);
+      console.error("Audio playback failed:", error); // log playback errors if exists 
     });
   };
 
@@ -195,13 +208,13 @@ function App() {
 				)}
               </div>
             </div>
-            <div className="smallbox">
+            <div className="smallbox"> // contains small buttons below box1
 			  <button className="small-button0" onClick={handleHomeClick}>Home</button>
               <button className="small-button1" onClick={handleAboutClick}>About</button>
               <button className="small-button2" onClick={handleContactClick}>Contact Us</button>
             </div>
           </div>
-          <div className="box box2">
+          <div className="box box2"> // contains larger buttons inside of box2
             <button className="big-button1" onClick={handleAccountClick}>Account ⭑.ᐟ</button>
             <button className="big-button2" onClick={playClickSound}>Haiku Gallery ⭑.ᐟ</button>
             <button className="big-button3" onClick={playClickSound}>Other ⭑.ᐟ</button>
