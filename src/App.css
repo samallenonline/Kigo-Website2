@@ -6,17 +6,18 @@
 body {
   font-family: 'lucida';
   background-color: #f4f4f4;
-  /* 
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; */
+  background-image: url('/src/visual/kigo-background1.png');
+  background-size: 1440px 820px;
+  background-position: bottom; 
+  background-repeat: no-repeat;
   cursor: url('.//visual/cursor.cur'), auto; 
 }
 
 .App-header {
   text-align: center;
   padding: 20px;
-  background-color: #f4f4f4;
+  background-image: url('/src/visual/kigo-header1.png');
+  background-color: rgba(255, 255, 255, 0.8); 
   border-bottom: 2px solid #cccccc;
 }
 

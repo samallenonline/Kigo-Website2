@@ -33,7 +33,6 @@ function App() {
 	playClickSound();
 	// show welcome page, hide others 
 	setShowWelcomeText(true);
-	setShowWelcomeText(false);
 	setShowAgeInput(false);
 	setShowContactInfo(false);
 	setShowAccount(false);
@@ -208,13 +207,13 @@ function App() {
 				)}
               </div>
             </div>
-            <div className="smallbox"> // contains small buttons below box1
+            <div className="smallbox"> 
 			  <button className="small-button0" onClick={handleHomeClick}>Home</button>
               <button className="small-button1" onClick={handleAboutClick}>About</button>
               <button className="small-button2" onClick={handleContactClick}>Contact Us</button>
             </div>
           </div>
-          <div className="box box2"> // contains larger buttons inside of box2
+          <div className="box box2"> 
             <button className="big-button1" onClick={handleAccountClick}>Account ⭑.ᐟ</button>
             <button className="big-button2" onClick={playClickSound}>Haiku Gallery ⭑.ᐟ</button>
             <button className="big-button3" onClick={playClickSound}>Other ⭑.ᐟ</button>
