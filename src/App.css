@@ -67,7 +67,7 @@ body {
 .spotify-image {
 	width: 150px;
 	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-bottom: 8px;
 	border-radius: 8px;
 }
 
@@ -123,7 +123,8 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  margin-top: 10px;
 }
 
 
@@ -155,18 +156,28 @@ button {
 	transition: background-color 0.1s ease;
 }
 
-.ok-button {
+.ok-button,
+.connect-spotify-button,
+.submit-age-button {
 	align-items: center;	
 	width: 200px;
 }
 
+.clear-data-button,
+.logout-button {
+	align-items: center;	
+	width: 200px;
+	margin-top: 350px;
+}
 
-.toggle-explicit {
+.toggle-explicit, 
+.toggle-baby-mode {
   display: flex; 
   align-items: center; 
 }
 
-.toggle-explicit input {
+.toggle-explicit input, 
+.toggle-baby-mode input {
   margin-right: 20px; 
 }
 

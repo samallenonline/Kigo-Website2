@@ -1,28 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-const Account = ({ age }) => {
-  // state to manage preference for explicit content 
-  const [allowExplicitContent, setAllowExplicitContent] = useState(false);
+const Account = ({
+  allowExplicitContent,
+  setAllowExplicitContent,
+  age,
+  setIsAgeEntered,
+  handleClearData,
+  handleLogout,
+  playClickSound
+}) => {
+  // local state to track baby mode preference
+  const [enableBabyMode, setEnableBabyMode] = useState(false);
 
-  // load user's preferences from local storage 
   useEffect(() => {
-    const savedPreference = localStorage.getItem('allowExplicitContent');
-    if (savedPreference) {
-	  // parse user's preference if exists 
-      setAllowExplicitContent(JSON.parse(savedPreference));
+    // load 'baby mode' preference from local storage
+    const savedBabyModePreference = localStorage.getItem('babyMode');
+    if (savedBabyModePreference) {
+      setEnableBabyMode(JSON.parse(savedBabyModePreference));
     }
   }, []);
 
-  // handles toggle checkbox for explicit content preference 
-  const handleToggle = () => {
+  const handleExplicitContentToggle = () => {
     setAllowExplicitContent(prevState => {
       const newState = !prevState;
       localStorage.setItem('allowExplicitContent', newState);
       return newState;
     });
+    playClickSound(); 
   };
 
-  // user's account and preferences page 
+  const handleBabyModeToggle = () => {
+    setEnableBabyMode(prevState => {
+      const newState = !prevState;
+      localStorage.setItem('babyMode', newState);
+      return newState;
+    });
+    playClickSound();
+  };
+
+  const handleClearDataWrapper = () => {
+    handleClearData(); // execute the passed down clear function
+    setIsAgeEntered(false); // reset age entered status
+  };
+
   return (
     <div>
       <p><b>Account Preferences</b></p>
@@ -30,21 +51,42 @@ const Account = ({ age }) => {
       <div className="toggle-explicit">
         <label>
           <input
-		    // display explicit content preference, which can be toggled if the entered age is 18+
             type="checkbox"
             checked={allowExplicitContent}
-            onChange={handleToggle}
-            disabled={age < 18} // by default, explicit content is not used if the user is under 18
-            style={{ opacity: age < 18 ? 0.5 : 1 }} // gray out toggle box if under 18 
+            onChange={handleExplicitContentToggle}
+            disabled={age < 18}
+            style={{ opacity: age < 18 ? 0.5 : 1 }}
             aria-label="Allow Explicit Content"
           />
           Allow Explicit Content
         </label>
       </div>
+      <div className="toggle-baby-mode" style={{ marginTop: '10px' }}>
+        <label>
+          <input
+            type="checkbox"
+            checked={enableBabyMode}
+            onChange={handleBabyModeToggle}
+            aria-label="Enable Baby Mode"
+          />
+          Enable Baby Mode
+        </label>
+      </div>
+      <button className="clear-data-button" onClick={handleClearDataWrapper}>Clear Local Data</button>
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
     </div>
   );
 };
 
-export default Account;
+Account.propTypes = {
+  allowExplicitContent: PropTypes.bool.isRequired,
+  setAllowExplicitContent: PropTypes.func.isRequired,
+  age: PropTypes.number.isRequired,
+  setIsAgeEntered: PropTypes.func.isRequired,
+  handleClearData: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  playClickSound: PropTypes.func
+};
 
+export default Account;
 

@@ -15,6 +15,8 @@ function App() {
   const [allowExplicitContent, setAllowExplicitContent] = useState(false); // user preference for explicit content
   const [showAbout, setShowAbout] = useState(false); // controls about page visibility
   const [showHome, setShowHome] = useState(true); // controls homepage visibility 
+  const [isAgeEntered, setIsAgeEntered] = useState(false);
+  const [isSpotifyConnected, setIsSpotifyConnected] = useState(false);
   
   // get stored data from user 
   useEffect(() => {
@@ -22,6 +24,7 @@ function App() {
 	if (storedAge) {
 		setAge(storedAge);
 	}
+	
 	const savedPreference = localStorage.getItem('allowExplicitContent');
 	if (savedPreference) {
 		setAllowExplicitContent(JSON.parse(savedPreference));
@@ -52,30 +55,54 @@ function App() {
 	setStep(0);
   };
   
+  // handles button for user to clear their local data
+  const handleClearData = () => {
+    localStorage.clear(); 
+    setAge('');
+    setStep(0); 
+	setAllowExplicitContent(false);
+	setIsAgeEntered(false);
+    setShowAgeInput(false);
+    setShowWelcomeText(true);
+    alert("All local data has been cleared!");
+  };
+  
   // function for when user clicks on the "ok" button
   const handleOkClick = () => {
-      playClickSound();
-      if (step === 0) {
-          setStep(1); // show age input
-          setShowAgeInput(true);
-		  // clear other pages 
-          setShowWelcomeText(false); 
-          setShowContactInfo(false);
-		  setShowHome(false);
-      } else if (step === 1) {
-          // validate user age 
-          const parsedAge = parseInt(age, 10);
-          if (isNaN(parsedAge) || parsedAge < 1 || parsedAge > 120) {
-              alert("Please enter a valid age between 1 and 120.");
-              return; // do not proceed if age is invalid 
-          }
-          setStep(2); // display confirmation message 
-          setShowAgeInput(false);
-          localStorage.setItem('userAge', age); // store user age in local storage
-      } else {
-          alert("Now you can connect your Spotify account!"); // prompt user to connect spotify account
-      }
+  	playClickSound();
+	if (isAgeEntered) {
+	    setStep(2);
+		setShowAgeInput(false);
+		setShowWelcomeText(false); 
+		setShowContactInfo(false);
+		setShowHome(false);
+	}
+	else {
+    setStep(1); // show age input
+    setShowAgeInput(true);
+	// clear other pages 
+    setShowWelcomeText(false); 
+    setShowContactInfo(false);
+	setShowHome(false);
+	}
   };
+  
+  const handleAgeSubmitClick = () => {
+	// validate user age 
+	const parsedAge = parseInt(age, 10);
+	if (isNaN(parsedAge) || parsedAge < 1 || parsedAge > 120) {
+	    alert("Please enter a valid age between 1 and 120.");
+	    return; // do not proceed if age is invalid 
+	}
+	setStep(2); // display confirmation message 
+	setShowAgeInput(false);
+	setIsAgeEntered(true);
+	localStorage.setItem('userAge', age); // store user age in local storage
+  }
+  
+  const handleConnectSpotifyClick = () => {
+	alert("Now you can connect your Spotify account!"); // prompt user to connect spotify account
+  }
 
   // function for when the user logs out of their account 
   const handleLogout = () => {
@@ -87,7 +114,7 @@ function App() {
 	setShowContactInfo(false);
   };
   
-  const handleAgeChange = (e) => {
+  const handleAgeSubmit = (e) => {
     setAge(e.target.value);
   };
 
@@ -140,6 +167,10 @@ function App() {
 						allowExplicitContent={allowExplicitContent}
 						setAllowExplicitContent={setAllowExplicitContent}
 						age={age}
+						setIsAgeEntered={setIsAgeEntered}
+						handleClearData={handleClearData}
+						handleLogout={handleLogout}
+						playClickSound={playClickSound}
 					/>
 				) : (
 				<>
@@ -155,43 +186,44 @@ function App() {
 						<p>After you sign into your Spotify account, Kigo will use the Spotify API to gather information from your listening history and identify your most-listened songs. The Genius API is then used to gather lyrical content from these songs. From there, Kigo uses several algorithms to parse these lyrics and generate a fun and personalized haiku!</p>
 					  </div>
 	                )}
-					{showAgeInput && (
-					  <div className="age-input">
-					    <p><b>Please enter your age:</b></p>
+					{step === 0 && showWelcomeText && (
+					  <button className="ok-button" onClick={handleOkClick}>
+					    OK
+					  </button>
+					)}
+					{step === 1 && showAgeInput && (
+						<div className="age-input">
+						  <p><b>Please enter your age:</b></p>
 						<p>Kigo requires that you enter you age so that we can manage explicit content. If you are under 18, lyrics that contains explicit content will not be used in haiku generation. Otherwise, you will be allowed to toggle the "Allow explicit content" setting in the <b>"Preferences"</b> menu.</p>
-					    <input
-					      type="text"
-					      value={age}
-					      onChange={handleAgeChange}
+						  <input
+						    type="text"
+						    value={age}
+						    onChange={handleAgeSubmit}
 						  className="age-input-box"
-					    />
+						  />
+						  <p>   </p>
+						  <button className="submit-age-button" onClick={handleAgeSubmitClick}>
+						    Submit Age
+						  </button>
+						</div>
+					)}
+					{step === 2 && (
+					  <div className="confirmation-message">
+					    <p>Thank you for entering your age!</p>
+					    <img src={spotifyLogo} alt="Connect Spotify" className="spotify-image" />
+						<p>   </p>
+						<button className="connect-spotify-button" onClick={handleConnectSpotifyClick}>
+						  Connect Spotify
+						</button>
 					  </div>
 					)}
-	                {step === 2 && (
-	                  <div className="confirmation-message">
-	                    <p>Thank you for entering your age!</p>
-						<img src={spotifyLogo} alt="Connect Spotify" className="spotify-image" />
-	                  </div>
-	                )}
-	                {step === 0 && showWelcomeText && (
-	                  <button className="ok-button" onClick={handleOkClick}>OK</button>
-	                )}
-	                {(showAgeInput || step === 2) && (
-	                  <button className="ok-button" onClick={handleOkClick}>
-	                    {step === 1 ? 'Submit Age' : 'Connect Spotify'}
-	                  </button>
-	                )}
 					{showContactInfo && (
 						<div className="contact-info-title">
 						<p><b>Contact Us</b></p>
 						<p>★・・・・・・・・・・・・・・・・・・・・・・・・・・★</p>
-						</div>
-					)}
-					{showContactInfo && (
-						<div className="text-block2">
-							<p>If you wish to reach out to the Kigo team, feel free to email us at pulsar3k@gmail.com.</p>
-							<p>Our <a href="https://github.com/samallenonline/CS3300-003-Kigo" target="_blank" rel="noopener noreferrer">GitHub repository</a>  contains our source code, contribution guidelines, and comprehensive documentation to help you get started with Kigo or contribute to our project</p>
-							<p>If you have any feature requests or suggestions for improvement, please create an issue on our GitHub page. We welcome all feedback and appreciate your support in making Kigo better!</p>
+						<p>If you wish to reach out to the Kigo team, feel free to email us at pulsar3k@gmail.com.</p>
+						<p>Our <a href="https://github.com/samallenonline/CS3300-003-Kigo" target="_blank" rel="noopener noreferrer">GitHub repository</a>  contains our source code, contribution guidelines, and comprehensive documentation to help you get started with Kigo or contribute to our project</p>
+						<p>If you have any feature requests or suggestions for improvement, please create an issue on our GitHub page. We welcome all feedback and appreciate your support in making Kigo better!</p>
 						</div>
 					)}
 					{showAbout && (
