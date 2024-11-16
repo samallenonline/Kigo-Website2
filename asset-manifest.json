@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Kigo-Website2/static/css/main.36df709b.css",
-    "main.js": "/Kigo-Website2/static/js/main.171f4cf0.js",
+    "main.css": "/Kigo-Website2/static/css/main.74022fe8.css",
+    "main.js": "/Kigo-Website2/static/js/main.580dffcd.js",
     "static/js/453.a7c3230f.chunk.js": "/Kigo-Website2/static/js/453.a7c3230f.chunk.js",
     "static/media/kigo-background1.png": "/Kigo-Website2/static/media/kigo-background1.0750b9f423ad477bb5f0.png",
     "static/media/spotify_kigo.png": "/Kigo-Website2/static/media/spotify_kigo.feb25ab22531082d6d68.png",
@@ -10,12 +10,12 @@
     "static/media/click-noise.wav": "/Kigo-Website2/static/media/click-noise.18a78001595c714dd5ba.wav",
     "static/media/cursor.cur": "/Kigo-Website2/static/media/cursor.90444ce594ede625e9db.cur",
     "index.html": "/Kigo-Website2/index.html",
-    "main.36df709b.css.map": "/Kigo-Website2/static/css/main.36df709b.css.map",
-    "main.171f4cf0.js.map": "/Kigo-Website2/static/js/main.171f4cf0.js.map",
+    "main.74022fe8.css.map": "/Kigo-Website2/static/css/main.74022fe8.css.map",
+    "main.580dffcd.js.map": "/Kigo-Website2/static/js/main.580dffcd.js.map",
     "453.a7c3230f.chunk.js.map": "/Kigo-Website2/static/js/453.a7c3230f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.36df709b.css",
-    "static/js/main.171f4cf0.js"
+    "static/css/main.74022fe8.css",
+    "static/js/main.580dffcd.js"
   ]
 }
