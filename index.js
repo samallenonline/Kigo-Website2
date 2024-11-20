@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 const jarPath = path.join(__dirname, 'libs', 'Kigo-0.0.1-SNAPSHOT.jar');
 
 // define path to the lyrics folder
-const lyricsFolder = path.join(__dirname, 'KigoLibrary', 'lyrics');
+const lyricsFolder = path.join(__dirname, '../KigoLibrary/lyrics');
 
 // root route
 app.get('/', (req, res) => {
@@ -24,8 +24,6 @@ app.get('/login', (req, res) => {
   console.log('[DEBUG] Initiating login flow');
 
   // command to execute the JAR's login flow
-  const command = `java -jar ${jarPath} login`;
-
   const loginProcess = spawn('java', ['-jar', jarPath, 'login']);
   let stdout = '';
   let stderr = '';
@@ -97,7 +95,6 @@ app.get('/callback', (req, res) => {
     res.send('Authentication successful! User data processed.');
   });
 });
-
 
 // route to fetch lyrics using the JAR file
 app.get('/fetch-lyrics', (req, res) => {
@@ -172,3 +169,4 @@ app.get('/generate-haiku', (req, res) => {
 app.listen(PORT, () => {
   console.log(`[DEBUG] Server running on http://localhost:${PORT}`);
 });
+

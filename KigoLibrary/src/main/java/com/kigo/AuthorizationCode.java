@@ -11,7 +11,7 @@ import java.net.URI;
 public class AuthorizationCode {
     private static final String clientId = System.getenv("SPOTIFY_CLIENT_ID");
     private static final String clientSecret = System.getenv("SPOTIFY_CLIENT_SECRET");
-    private static final URI redirectUri = SpotifyHttpManager.makeUri("https://kigo-app.glitch.me/login");
+    private static final URI redirectUri = SpotifyHttpManager.makeUri("http://localhost:3000/callback");
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
         .setClientId(clientId)
