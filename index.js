@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 const jarPath = path.join(__dirname, 'libs', 'Kigo-0.0.1-SNAPSHOT.jar');
 
 // define path to the lyrics folder
-const lyricsFolder = path.join(__dirname, 'KigoLibrary', 'bin', 'lyrics');
+const lyricsFolder = path.join(__dirname, 'KigoLibrary', 'lyrics');
 
 // root route
 app.get('/', (req, res) => {
