@@ -1,0 +1,14 @@
+com/kigo/CompileLyrics.class
+com/kigo/UserTopTracks.class
+com/kigo/AuthorizationCode.class
+com/kigo/SyllableCounter1.class
+com/kigo/processLyricLines.class
+com/kigo/testingSyllableCounter.class
+com/kigo/LyricsOvhFetcher.class
+com/kigo/removeDuplicateLines.class
+com/kigo/SpotifyTrackInfo.class
+com/kigo/ClientCredentialsEX.class
+com/kigo/HaikuFinder.class
+com/kigo/SpotifyAuth.class
+com/kigo/AuthorizationCodeUri.class
+com/kigo/Haiku.class
